@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1e19">
+<title>Người lái đò — Một đời đưa đò, vạn lời tri ân</title>
+<meta name="description" content="Một món quà nhỏ gửi thầy cô nhân ngày Nhà giáo Việt Nam 20/11.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1e19'/%3E%3Cpath d='M14 36h36l-6 12H20zM32 36V16l12 14z' fill='none' stroke='%23e9b96e' stroke-width='2.6' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Dancing+Script:wght@400;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-act="1">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="light-sweep" id="sweep" aria-hidden="true"></div>
+
+<header class="hud">
+  <div class="hud-brand">
+    <svg class="brand-boat" viewBox="0 0 120 90" aria-hidden="true">
+      <path d="M14 52h92l-14 24H28z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M60 52V14l30 30z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M60 52V22L34 44z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand-text">Người lái đò</span>
+  </div>
+
+  <div class="hud-progress">
+    <div class="dots" aria-hidden="true">
+      <span class="dot is-on"></span><span class="dot"></span><span class="dot"></span>
+      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="hud-act">
+      <span id="hudNum">01</span>
+      <span class="hud-sep" aria-hidden="true">/</span>
+      <span id="hudName">Mở đầu</span>
+    </div>
+  </div>
+
+  <button class="sound-btn" id="soundBtn" type="button" aria-pressed="true" aria-label="Tắt nhạc nền">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <g class="icon-on" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9.5v5h3.2L12 18V6L7.2 9.5H4z"/>
+        <path d="M15.5 8.6a5 5 0 010 6.8"/>
+        <path d="M18.2 6a8.6 8.6 0 010 12"/>
+      </g>
+      <g class="icon-off" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 9.5v5h3.2L12 18V6L7.2 9.5H4z"/>
+        <path d="M16 9.5l5 5M21 9.5l-5 5"/>
+      </g>
+    </svg>
+    <span class="sound-label">Nhạc</span>
+  </button>
+</header>
+
+<main class="stage" id="stage">
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <!-- ============ 01 · MỞ ĐẦU ============ -->
+  <section class="act act--board is-active" id="act-1" data-act="1" aria-label="Mở đầu">
+    <div class="act-bg bg-board" aria-hidden="true">
+      <div class="beam"></div>
+      <div class="board-smudge bs1"></div>
+      <div class="board-smudge bs2"></div>
+      <div class="board-smudge bs3"></div>
+      <div class="smudge s1"></div>
+      <div class="smudge s2"></div>
+      <div class="chalk-stars">
+        <span>✦</span><span>·</span><span>✧</span>
+      </div>
+
+      <div class="board-frame">
+        <span class="board-tray">
+          <i class="chalk-stick cs1"></i>
+          <i class="chalk-stick cs2"></i>
+          <i class="chalk-stick cs3"></i>
+          <i class="board-eraser"></i>
+        </span>
+      </div>
+    </div>
+
+    <div class="act-inner inner-intro">
+      <div class="intro-head">
+        <div class="chalk-date" aria-label="20 tháng 11">
+          <span>20</span><i aria-hidden="true">·</i><span>11</span>
+        </div>
+        <svg class="chalk-rule" viewBox="0 0 320 26" aria-hidden="true">
+          <path d="M6 16C64 8 118 20 176 12s92 6 138-2" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+          <path d="M40 22c52-5 96 4 150-1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <p class="chalk-label">Ngày Nhà giáo Việt Nam</p>
+      </div>
+
+      <blockquote class="intro-quote">
+        “Một ngày đặc biệt dành cho những người<br class="br-wide"> đã dành cả cuộc đời để gieo mầm tri thức.”
+      </blockquote>
+
+      <p class="intro-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <path d="M4 9.5v5h3.2L12 18V6L7.2 9.5H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/>
+        </svg>
+        Bật âm thanh để nghe trọn vẹn
+      </p>
+    </div>
+
+    <div class="waterline" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0 46c120-14 220 8 340 2s220-18 340-6 220 16 340 4 260-16 420-2" fill="none" stroke="currentColor" stroke-width="2" opacity=".45"/>
+        <path d="M0 62c140-10 240 10 380 2s240-14 360-4 240 12 360 2 200-10 340 0" fill="none" stroke="currentColor" stroke-width="1.2" opacity=".25"/>
+      </svg>
+    </div>
+
+    <div class="boat boat--intro" aria-hidden="true">
+      <svg viewBox="0 0 120 90">
+        <path d="M14 52h92l-14 24H28z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M60 52V16l28 28z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+        <path d="M60 52V22L36 44z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/>
+        <circle cx="49" cy="62" r="2.2" fill="currentColor"/>
+        <circle cx="67" cy="62" r="2.2" fill="currentColor"/>
+        <path d="M51 68q6 5 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 02 · NHỮNG ĐIỀU THẦM LẶNG ============ -->
+  <section class="act act--paper" id="act-2" data-act="2" aria-label="Những điều thầm lặng">
+    <div class="act-bg bg-paper" aria-hidden="true">
+      <div class="margin-rule"></div>
+    </div>
+
+    <div class="act-inner inner-split">
+      <div class="whisper-col">
+        <p class="kicker">Bến 02</p>
+        <h2 class="title">Những điều <em>thầm lặng</em></h2>
+        <p class="lede">Có những việc thầy cô làm mỗi ngày,<br class="br-wide"> mà chỉ khi lớn rồi chúng em mới hiểu.</p>
+
+        <ol class="whispers" id="whispers">
+          <li class="whisper" data-i="1">
+            <span class="w-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M15 3.6A7 7 0 1019.9 15 7.6 7.6 0 0115 3.6z"/>
+              </svg>
+            </span>
+            <p>Những bài giảng được chuẩn bị từ tối hôm trước, khi cả lớp đã ngủ.</p>
+          </li>
+          <li class="whisper" data-i="2">
+            <span class="w-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9.4 3.4l5.4 1.5-3.7 13.3-5.4-1.5z"/>
+                <path d="M7.7 7.2l5.4 1.5"/>
+              </svg>
+            </span>
+            <p>Những lần kiên nhẫn giảng lại một bài, dù đã là lần thứ ba.</p>
+          </li>
+          <li class="whisper" data-i="3">
+            <span class="w-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8.4"/><path d="M12 7.6V12l3 2"/>
+              </svg>
+            </span>
+            <p>Những lời nhắc nhở đôi khi nghiêm khắc, mà bên trong là một điều rất thương.</p>
+          </li>
+          <li class="whisper" data-i="4">
+            <span class="w-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3.2 11.4a8.8 8.8 0 0117.6 0z"/>
+                <path d="M12 11.4v6.2a2.2 2.2 0 004.4 0"/>
+              </svg>
+            </span>
+            <p>Những lần thầy cô lặng lẽ quan tâm, không để ai biết.</p>
+          </li>
+          <li class="whisper" data-i="5">
+            <span class="w-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20v-6.6"/>
+                <path d="M12 13.4C12 10.4 9.6 8 6.6 8 6.6 11 9 13.4 12 13.4z"/>
+                <path d="M12 12.4C12 9.2 14.4 6.6 18 6.6c0 3.2-2.4 5.8-6 5.8z"/>
+              </svg>
+            </span>
+            <p>Và những hy sinh, đến khi lớn rồi chúng em mới nhận ra.</p>
+          </li>
+        </ol>
+
+        <p class="whisper-count"><span id="whisperNow">0</span><span class="wc-sep">/</span>5</p>
+      </div>
+
+      <aside class="desk-illus" aria-hidden="true">
+        <svg viewBox="0 0 340 320">
+          <defs>
+            <linearGradient id="lampGlow" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e9b96e" stop-opacity=".34"/>
+              <stop offset="1" stop-color="#e9b96e" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M118 252 232 96l74 30-104 148z" fill="url(#lampGlow)"/>
+          <g fill="none" stroke="#5c6b60" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+            <path d="M96 258h120"/>
+            <path d="M150 258v-18"/>
+            <ellipse cx="150" cy="240" rx="22" ry="4.6"/>
+            <path d="M150 240V158"/>
+            <path d="M150 158l58-30"/>
+            <path d="M208 128l16 34"/>
+            <path d="M196 118l28 12-14 30-30-10z"/>
+            <path d="M224 162c-10 1-18-4-20-12"/>
+          </g>
+          <g fill="none" stroke="#5c6b60" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".9">
+            <path d="M92 268c18-10 46-10 66 0v22c-20-10-48-10-66 0z"/>
+            <path d="M158 268c20-10 48-10 66 0v22c-18-10-46-10-66 0z"/>
+            <path d="M158 268v22"/>
+            <path d="M112 274c10-4 22-4 32 0M106 281c12-4 26-4 38 0M182 274c10-4 22-4 32 0M176 281c12-4 26-4 38 0"/>
+          </g>
+          <g fill="none" stroke="#8a9a8e" stroke-width="1.4" stroke-linecap="round" opacity=".7">
+            <path d="M246 244h30v22h-30z"/>
+            <path d="M276 250c8-2 8 10 0 9"/>
+          </g>
+        </svg>
+      </aside>
+    </div>
+
+    <div class="waterline" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path d="M0 50c140-12 240 8 360 2s240-16 360-4 240 12 360 2 220-12 360 0" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".28"/>
+      </svg>
+    </div>
+
+    <div class="boat boat--paper" aria-hidden="true">
+      <svg viewBox="0 0 120 90">
+        <path d="M14 52h92l-14 24H28z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M60 52V16l28 28z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+        <path d="M60 52V22L36 44z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+        <circle cx="49" cy="62" r="2" fill="currentColor"/>
+        <circle cx="67" cy="62" r="2" fill="currentColor"/>
+        <path d="M51 68q6 5 12 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============ 03 · MỘT LỜI CẢM ƠN ============ -->
+  <section class="act act--light" id="act-3" data-act="3" aria-label="Một lời cảm ơn">
+    <div class="act-bg bg-window" aria-hidden="true">
+      <div class="sun-pool"></div>
+      <div class="sun-pool p2"></div>
+    </div>
+
+    <div class="act-inner inner-moment">
+      <figure class="window-wrap" aria-hidden="true">
+        <svg viewBox="0 0 360 440">
+          <defs>
+            <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#fff6e2"/>
+              <stop offset=".55" stop-color="#f6e3bd"/>
+              <stop offset="1" stop-color="#e9cfa2"/>
+            </linearGradient>
+            <linearGradient id="beam" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff4d8" stop-opacity=".55"/>
+              <stop offset="1" stop-color="#fff4d8" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M20 40h330v400H20z" fill="#f0dcb8"/>
+          <rect x="34" y="54" width="302" height="372" fill="url(#glass)"/>
+          <g stroke="#e2c894" stroke-width="8" opacity=".9">
+            <path d="M34 240h302M186 54v372"/>
+          </g>
+          <g fill="none" stroke="#fff8e8" stroke-width="2" opacity=".8">
+            <path d="M60 96c30-16 62-8 84 14M72 300c26 14 54 12 78-4M212 180c22-14 48-12 66 2"/>
+          </g>
+          <path d="M186 426v-58" stroke="#5c6b60" stroke-width="2.2" fill="none"/>
+          <path d="M186 400c-16-2-26-14-26-28 16 0 26 12 26 28zM186 390c2-18 14-28 28-28 0 16-12 28-28 28z" fill="#7f9179" opacity=".85"/>
+          <path d="M170 372h34l-5 28h-24z" fill="#d8bf94"/>
+          <path d="M34 430h302" stroke="#dcc59a" stroke-width="2" opacity=".6"/>
+        </svg>
+      </figure>
+
+      <div class="moment-copy">
+        <p class="kicker">Bến 03</p>
+        <blockquote class="moment-quote">
+          <span>Có những bài học</span>
+          <span>không nằm trong trang sách.</span>
+          <span class="mq-gap">Có những người thầy, người cô</span>
+          <span>sẽ ở lại trong ký ức chúng ta</span>
+          <span>suốt cuộc đời.</span>
+        </blockquote>
+        <div class="moment-sign" aria-hidden="true">
+          <span class="ms-line"></span>
+          <span class="ms-text">lặng lại một chút</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 · LỜI CHÚC ============ -->
+  <section class="act act--paper act--letter" id="act-4" data-act="4" aria-label="Lời chúc">
+    <div class="act-bg bg-desk" aria-hidden="true">
+      <div class="desk-grain"></div>
+    </div>
+
+    <div class="act-inner inner-letter">
+      <div class="letter-stage" id="letterStage">
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-expanded="false" aria-label="Mở lá thư chúc mừng">
+          <div class="env-back"></div>
+          <div class="env-letter-peek"></div>
+          <div class="env-front"></div>
+          <div class="env-flap"></div>
+          <div class="env-seal" aria-hidden="true">
+            <svg viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="#b4452f"/>
+              <circle cx="32" cy="32" r="22" fill="none" stroke="#f7f0e2" stroke-width="1.2" opacity=".55"/>
+              <text x="32" y="31" text-anchor="middle" font-family="Dancing Script, cursive" font-size="15" fill="#f7f0e2">20 · 11</text>
+              <text x="32" y="44" text-anchor="middle" font-family="Be Vietnam Pro, sans-serif" font-size="6" letter-spacing="1.4" fill="#f7f0e2" opacity=".85">TRI ÂN</text>
+            </svg>
+          </div>
+          <p class="env-hint">chạm để mở thư</p>
+        </div>
+
+        <article class="letter" id="letter" aria-hidden="true">
+          <div class="letter-paper">
+            <p class="letter-date">20 · 11</p>
+            <p class="letter-to" id="letterTo">Gửi thầy cô,</p>
+            <p>Nhân ngày Nhà giáo Việt Nam, chúng em muốn gửi đến thầy cô một lời cảm ơn thật chậm.</p>
+            <p>Cảm ơn thầy cô đã thức khuya soạn bài, đã kiên nhẫn với những đứa trò còn nhiều lỗi, và đã tin vào chúng em vào những ngày chính chúng em không tin vào mình.</p>
+            <p>Mong thầy cô luôn mạnh khỏe, bình an, và mỗi ngày đến lớp đều có một lý do để mỉm cười.</p>
+            <p>Chúng em có thể không còn ngồi ở dãy bàn ấy nữa, nhưng sẽ mãi nhớ ơn người đã đưa mình qua một đoạn sông.</p>
+            <p class="letter-sign" id="letterFrom">— Những đứa học trò của thầy cô</p>
+          </div>
+          <span class="letter-fold" aria-hidden="true"></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 · MÓN QUÀ NHỎ ============ -->
+  <section class="act act--gift" id="act-5" data-act="5" aria-label="Món quà nhỏ">
+    <div class="act-bg bg-gift" aria-hidden="true">
+      <div class="gift-halo"></div>
+    </div>
+
+    <div class="act-inner inner-gift">
+      <div class="gift-head">
+        <p class="kicker kicker--center">Bến 05</p>
+        <h2 class="title title--center">Một món quà <em>nhỏ</em></h2>
+      </div>
+
+      <div class="gift" id="gift" role="button" tabindex="0" aria-pressed="false" aria-label="Mở hộp quà">
+        <div class="gift-bouquet" aria-hidden="true">
+          <svg viewBox="0 0 300 300">
+            <defs>
+              <linearGradient id="bqPetal" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffffff"/>
+                <stop offset=".58" stop-color="#fdf9f2"/>
+                <stop offset="1" stop-color="#ecdfd1"/>
+              </linearGradient>
+              <linearGradient id="bqLeaf" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#94b99b"/>
+                <stop offset="1" stop-color="#4e7a5c"/>
+              </linearGradient>
+              <linearGradient id="bqWrap" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#fde4e7"/>
+                <stop offset=".52" stop-color="#f3bcc7"/>
+                <stop offset="1" stop-color="#dd93a6"/>
+              </linearGradient>
+              <g id="bqTulip">
+                <path d="M-1 2C-9 3-18-4-19-16c-1-8 3-14 7-17 2 6 6 9 12 10 6-1 10-4 12-10 4 3 8 9 7 17C18-4 9 3 1 2Z" fill="url(#bqPetal)" stroke="#e2d3c6" stroke-width="1.1" stroke-linejoin="round"/>
+                <path d="M0 2C-6 1-9-5-9-12c0-7 3-12 9-15 6 3 9 8 9 15 0 7-3 13-9 14Z" fill="#ffffff" opacity=".8"/>
+                <path d="M-7-6c2-2 3-6 3-10M7-6c-2-2-3-6-3-10" fill="none" stroke="#e2d3c6" stroke-width=".8" opacity=".65" stroke-linecap="round"/>
+                <path d="M-5 1h10l-2 9h-6z" fill="#5c8768"/>
+              </g>
+            </defs>
+
+            <g transform="translate(150 302) scale(1.32) translate(-150 -302)">
+              <!-- lá xanh phía sau -->
+              <g fill="url(#bqLeaf)" stroke="#456c53" stroke-width="1.1" stroke-linejoin="round">
+                <path transform="translate(150 212)" d="M0 0C-14-18-26-48-22-84-4-64 6-32 2-4Z"/>
+                <path transform="translate(150 216) rotate(-34)" d="M0 0C-14-18-26-48-22-84-4-64 6-32 2-4Z"/>
+                <path transform="translate(150 216) rotate(34) scale(-1 1)" d="M0 0C-14-18-26-48-22-84-4-64 6-32 2-4Z"/>
+                <path transform="translate(150 220) rotate(-66)" d="M0 0C-14-18-26-48-22-84-4-64 6-32 2-4Z"/>
+                <path transform="translate(150 220) rotate(66) scale(-1 1)" d="M0 0C-14-18-26-48-22-84-4-64 6-32 2-4Z"/>
+              </g>
+
+              <!-- cành hoa -->
+              <g fill="none" stroke="#5c8768" stroke-width="2.6" stroke-linecap="round">
+                <path d="M150 147v60"/>
+                <path d="M111 157 102 204"/>
+                <path d="M189 155 198 204"/>
+                <path d="M84 185 92 216"/>
+                <path d="M216 183 208 216"/>
+                <path d="M124 190 126 214"/>
+                <path d="M176 188 174 214"/>
+              </g>
+
+              <!-- giấy gói hồng -->
+              <path d="M150 292C122 276 98 230 92 192c18-9 39-13 58-13s40 4 58 13c-6 38-30 84-58 100Z" fill="#f8ccd6" stroke="#dca0af" stroke-width="1"/>
+              <path d="M150 294C128 274 102 228 98 200c11 12 27 18 52 18s41-6 52-18c-4 28-30 74-52 94Z" fill="url(#bqWrap)" stroke="#d78ea1" stroke-width="1.1" stroke-linejoin="round"/>
+              <path d="M98 200c11 12 27 18 52 18v74c-20-16-44-60-52-92Z" fill="#ffffff" opacity=".2"/>
+              <g fill="none" stroke="#d78ea1" stroke-width=".9" opacity=".5">
+                <path d="M104 204c8 26 20 50 36 72"/>
+                <path d="M196 204c-8 26-20 50-36 72"/>
+                <path d="M150 218v76"/>
+              </g>
+
+              <!-- hoa tulip trắng -->
+              <g class="bouquet-blooms">
+                <g transform="translate(150 148) rotate(2) scale(1.02)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(111 158) rotate(-12) scale(.94)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(189 156) rotate(12) scale(.94)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(84 186) rotate(-20) scale(.84)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(216 184) rotate(20) scale(.84)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(124 191) rotate(-6) scale(.9)"><g class="bloom"><use href="#bqTulip"/></g></g>
+                <g transform="translate(176 189) rotate(6) scale(.9)"><g class="bloom"><use href="#bqTulip"/></g></g>
+              </g>
+
+              <!-- nơ hồng -->
+              <path d="M129 238c14-3 28-3 42 0l3 12c-16-3-32-3-48 0Z" fill="#db8298" stroke="#c9718a" stroke-width=".8"/>
+              <g stroke="#c9718a" stroke-width=".9" stroke-linejoin="round">
+                <path d="M150 244c-9-13-27-14-26-1 1 11 16 12 26 1Z" fill="#e590a5"/>
+                <path d="M150 244c9-13 27-14 26-1-1 11-16 12-26 1Z" fill="#e590a5"/>
+                <path d="M150 246c-5 8-7 16-5 23l6-2 2-19Z" fill="#dd849b"/>
+                <path d="M150 246c5 8 7 16 5 23l-6-2-2-19Z" fill="#dd849b"/>
+                <circle cx="150" cy="244" r="4.6" fill="#c9718a"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="gift-box">
+          <div class="gift-body">
+            <span class="ribbon ribbon-v"></span>
+            <span class="ribbon ribbon-h"></span>
+            <span class="gift-tag">tặng thầy cô</span>
+          </div>
+          <div class="gift-lid">
+            <span class="ribbon ribbon-lid"></span>
+            <span class="bow" aria-hidden="true"><i></i><i></i></span>
+          </div>
+        </div>
+        <p class="gift-hint" id="giftHint">chạm để mở quà</p>
+      </div>
+
+      <div class="gift-card-wrap" id="giftCardWrap">
+        <div class="gift-card-clip">
+          <div class="gift-card">
+            <p class="gc-ico" aria-hidden="true">✿</p>
+            <p>Món quà này không mua được bằng tiền: một bó hoa không bao giờ héo, và một lời cảm ơn không bao giờ cũ.</p>
+            <p class="gc-strong">Cảm ơn thầy cô vì đã đưa chúng em qua sông.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 · KẾT THÚC ============ -->
+  <section class="act act--dusk" id="act-6" data-act="6" aria-label="Kết thúc">
+    <div class="act-bg bg-dusk" aria-hidden="true">
+      <svg class="dusk-scene" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#0c211d"/>
+            <stop offset=".38" stop-color="#173c37"/>
+            <stop offset=".62" stop-color="#3c5a4c"/>
+            <stop offset=".78" stop-color="#b1874f"/>
+            <stop offset=".88" stop-color="#e2b575"/>
+            <stop offset="1" stop-color="#f0d19a"/>
+          </linearGradient>
+          <linearGradient id="river" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#c9a06a" stop-opacity=".85"/>
+            <stop offset=".5" stop-color="#5a6b56"/>
+            <stop offset="1" stop-color="#1a3229"/>
+          </linearGradient>
+          <radialGradient id="sunGlow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#ffe6b0" stop-opacity=".95"/>
+            <stop offset=".55" stop-color="#f4c983" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#f4c983" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1440" height="900" fill="url(#sky)"/>
+        <circle cx="932" cy="612" r="230" fill="url(#sunGlow)"/>
+        <circle cx="932" cy="612" r="52" fill="#ffe9bd" opacity=".92"/>
+        <path d="M0 640c120-26 210-10 300-24s180-30 280-14 210 24 330 8 250-24 350-6 140 14 180 10v90H0z" fill="#23453b" opacity=".85"/>
+        <path d="M0 690c150-20 260 6 390-6s230-22 350-6 220 18 340 4 230-16 360 0v60H0z" fill="#1b3a30"/>
+        <rect y="700" width="1440" height="200" fill="url(#river)"/>
+        <g stroke="#ffe1a9" stroke-linecap="round" opacity=".5">
+          <path d="M812 742h96M846 764h124M790 788h72M900 706h58" stroke-width="2"/>
+        </g>
+        <g stroke="#f7dba6" stroke-linecap="round" opacity=".22">
+          <path d="M120 742h180M360 776h240M700 812h300M1040 760h220M1180 800h200" stroke-width="1.4"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="act-inner inner-final">
+      <p class="final-to" id="finalTo" hidden></p>
+      <blockquote class="final-quote">
+        “Người gieo hạt có thể không đứng dưới bóng cây,<br class="br-wide"> nhưng những mầm xanh sẽ mãi nhớ về người đã vun trồng.”
+      </blockquote>
+      <div class="final-mark" aria-hidden="true">
+        <span></span><i>20 · 11</i><span></span>
+      </div>
+      <p class="final-title">Chúc mừng Ngày Nhà giáo Việt Nam 20/11</p>
+    </div>
+
+    <div class="boat boat--dusk" aria-hidden="true">
+      <svg viewBox="0 0 120 90">
+        <path d="M14 52h92l-14 24H28z" fill="#1a3229" stroke="none"/>
+        <path d="M60 52V16l28 28z" fill="#f2e6cd" stroke="none"/>
+        <path d="M60 52V22L36 44z" fill="#e6d5b6" stroke="none"/>
+      </svg>
+    </div>
+  </section>
+
+</main>
+
+<footer class="controls">
+  <button class="btn btn--ghost back-btn" id="backBtn" type="button">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H6M11 6l-6 6 6 6"/>
+    </svg>
+    <span>Quay lại</span>
+  </button>
+
+  <div class="ctrl-actions">
+    <button class="btn btn--ghost" id="altBtn" type="button" hidden></button>
+    <button class="btn btn--primary" id="mainBtn" type="button">
+      <span id="mainLabel">Bắt đầu hành trình</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h13M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* Đặt đường dẫn file nhạc nền vào đây, ví dụ: 'assets/audio/bgm.mp3'.
+     Để trống thì website tự chơi một bản nhạc hộp nhẹ (không cần file). */
+  window.SITE_CONFIG = { bgm: 'assets/audio/bgm.mp3' };
+</script>
+<script src="js/audio.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
