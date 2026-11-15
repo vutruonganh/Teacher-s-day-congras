@@ -51,7 +51,7 @@ index.html?to=Cô%20Lan&from=Nhóm%20học%20trò%2010A3
 
 ## Nhạc nền
 
-Website đang dùng file `assets/audio/bgm.mp3` (bản nhạc do bạn cung cấp, dài ~19 giây,
+Website đang dùng file `assets/audio/bgm.mp3` (bản nhạc do bạn cung cấp, dài ~40 giây,
 tự lặp lại). Nếu file bị thiếu hoặc lỗi, website tự quay về bản nhạc hộp tổng hợp
 bằng Web Audio nên không bao giờ im lặng.
 
